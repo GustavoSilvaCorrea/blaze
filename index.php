@@ -57,9 +57,6 @@
         }
 
         .banner {
-            background-image: url('banner.jpg');
-            background-size: cover;
-            background-position: center;
             color: #fff;
             padding: 4rem 0;
             text-align: center;
@@ -145,45 +142,30 @@
             text-decoration: none;
         }
 
-
-
         .roleta {
-            width: 400px;
-            height: 400px;
-            border: 10px solid black;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gomo {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            clip-path: polygon(50% 50%, 100% 0%, 100% 16%);
-            transform-origin: center;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Ajuste para posicionar o número no topo */
+            width: 700px;
+            background-color: green;
         }
 
-        .numero {
+        tbody td {
+            width: 250px;
+            padding: 5px;
+
+        }
+
+        td button {
             color: white;
-            font-weight: bold;
-            font-size: 14px;
-            transform: rotate(0deg); /* Mantém o texto legível */
-            position: absolute;
-        }
-
-        #nah {
-            width: 40px;
-            height: 40px;
+            padding: 5px;
             background-color: black;
             border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            font-size: 15px;
+
+        }
+
+        #resultado {
+            color: #222;
         }
     </style>
 </head>
@@ -205,44 +187,170 @@
     </header>
 
     <!-- Banner principal -->
-    <section class="banner">
-        <div class="container">
-            <h2>Bem-vindo à Melhor Casa de Apostas!</h2>
-            <section class="roleta">
-                <?php
-                // Definindo as cores dos gomos
-                $cores = ["red", "black"];
+    <main class="banner">
+    <div id="resultado"></div>
+        <?php ?>
+        <table border="5" class="roleta">
+            <tbody>
+                <td rowspan="4"><button onclick="mostrarTexto(this)">0</button></td>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">3</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">6</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">9</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">12</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)">2</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">5</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">8</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">11</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">1</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">4</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">7</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">10</button>
+                    </td>
 
-                // Número total de gomos
-                $totalGomos = 36;
-
-                // Ângulo entre cada gomo
-                $angulo = 360 / $totalGomos;
-
-                // Gerar os gomos
-                for ($i = 0; $i < $totalGomos; $i++) {
-                    // Definir o número do gomo (inicia em 1)
-                    $numero = $i + 1;
-
-                    // Calcular o ângulo de rotação para cada gomo
-                    $rotate = $angulo * $i;
-                    $cor = ($rotate == 220) ? "green" : $cores[$i % 2];
-
-
-                    // Gerar o gomo com estilo dinâmico
-                    echo "<div class='gomo' style='background-color: $cor; transform: rotate({$rotate}deg);'>
-    <span class='numero'>$numero</span>
-</div>";
-                }
-                ?>
-
-                <div id="nah">
-                    <p style="margin-top: 4px; font-size: 25px;">◈</p>
+                </tr>
+                <div class="nah">
+                    <tr>
+                        <td colspan="5"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">1st 12</button></td>
+                    </tr>
+                    <td colspan="3"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">1-18</button></td>
+                    <td colspan="3"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">Even</button></td>
                 </div>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)">15</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">18</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">21</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">24</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">14</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">17</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">20</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">23</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)">13</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">16</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">19</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">22</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">2nd 12</button></td>
+                </tr>
+                <td colspan="2">
+                    <p><button onclick="mostrarTexto(this)" style="border-radius: 25%; background-color: red; width: 80px;">Red</button></p>
+                </td>
+                <td colspan="2">
+                    <p><button onclick="mostrarTexto(this)" style="border-radius: 25%; width: 80px;">Black</button></p>
+                </td>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">27</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">30</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">33</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">36</button>
+                    </td>
+                    <td rowspan="3"><button onclick="mostrarTexto(this)" style="margin-left: 3px;">0</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)">26</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">29</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">32</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">35</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">25</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">28</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)">31</button>
+                    </td>
+                    <td>
+                        <button onclick="mostrarTexto(this)" style="background-color: red;">34</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">3rd 12</button></td>
+                </tr>
+                <td colspan="3"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">Odd</button></td>
+                <td colspan="3"><button onclick="mostrarTexto(this)" style="border-radius: 25%;">19-36</button></td>
+            </tbody>
+        </table>
 
-            </section>
-        </div>
-    </section>
+
+    </main>
 
     <!-- Rodapé -->
     <footer>
@@ -252,9 +360,16 @@
                 <li><a href="#">Termos de Serviço</a></li>
                 <li><a href="#">Política de Privacidade</a></li>
                 <li><a href="#">Contato</a></li>
+                <script>
+                    function mostrarTexto(botao) {
+                        var texto = botao.innerText;
+                        document.getElementById("resultado").innerText = "Você clicou no número: " + texto;
+                    }
+                </script>
             </ul>
         </div>
     </footer>
+
 </body>
 
 </html>
