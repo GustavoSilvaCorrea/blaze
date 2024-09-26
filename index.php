@@ -255,8 +255,11 @@
                 <!-- Seção valor da aposta -->
                 <section id="valor">
                     <h2>Valor da Aposta</h2>
-                    <input type="number" placeholder="Digite o valor da aposta" min="1">
-                    <button>Apostar</button>
+                    <input type="number" placeholder="Digite o valor da aposta" min="1" id="numberInput">
+                    <p id="output"></p>
+                    <p id="output2"></p>
+                    <p id="output3"></p>
+                    <button onclick="getNumberValue()">Apostar</button>
                 </section>
             </div>
 
@@ -441,6 +444,44 @@
 
             resultadoDiv.innerText = "Sua aposta: " + apostado;
             resultadoDiv.style.backgroundColor = corFundo; // Aplica a cor de fundo ao resultado
+        }
+    </script>
+    <script>
+        function getNumberValue() {
+            // Obtém a aposta
+            var bet = document.getElementById('resultado').innerText;
+            let bets = bet.slice(11, 18);
+            var nah = document.getElementById("output");
+
+            if (bets.length <= 3) {
+                var bet1 = parseInt(bets);
+                nah.innerText = bet1;
+            } else {
+                var bet2 = bets;
+                nah.innerText = bet2;
+            }
+
+            // Obtém o valor da aposta
+            const numberInput = document.getElementById('numberInput').value;
+            const numberValue = parseFloat(numberInput);
+
+            // Gera um número entre 0-36
+            const nr = Math.random() * 4;
+            var nr2 = parseInt(nr);
+            var nah = document.getElementById("output2");
+            nah.innerText = nr2;
+
+            // Aposta em Número
+            if (nr2 === bet1) {
+                var nah = document.getElementById("output3");
+                nah.innerText = "venceu";
+            } else if (bet2 === "Red") {
+                
+                    var nah = document.getElementById("output2");
+                    nah.innerText = "cuuuuuuu";
+                
+
+            }
         }
     </script>
 
