@@ -1,3 +1,6 @@
+<?php
+session_start(); // Certifique-se de que está aqui, no início do arquivo
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -238,7 +241,10 @@
                     <li><a href="#apostas">Apostas</a></li>
                     <li><a href="#casino">Cassino</a></li>
                     <li><a href="#promocoes">Promoções</a></li>
-                    <li><a href="#login">Login</a></li>
+                    <li><a href="login.php" target="_parent">Login</a></li>
+                    <?php
+                        include_once ("valida_login.php");
+                    ?>
                 </ul>
             </nav>
         </div>
@@ -448,42 +454,132 @@
     </script>
     <script>
         function getNumberValue() {
-            // Obtém a aposta
+            // Obtém a aposta do elemento de resultado
             var bet = document.getElementById('resultado').innerText;
             let bets = bet.slice(11, 18);
             var nah = document.getElementById("output");
 
+            // Definição de bet1 e bet2
+            let bet1, bet2;
             if (bets.length <= 3) {
-                var bet1 = parseInt(bets);
+                bet1 = parseInt(bets);
                 nah.innerText = bet1;
             } else {
-                var bet2 = bets;
+                bet2 = bets.trim(); // .trim() para evitar espaços extras
                 nah.innerText = bet2;
             }
 
-            // Obtém o valor da aposta
+            // Obtém o valor do número gerado
             const numberInput = document.getElementById('numberInput').value;
             const numberValue = parseFloat(numberInput);
 
             // Gera um número entre 0-36
-            const nr = Math.random() * 4;
+            const nr = Math.random() * 37;
             var nr2 = parseInt(nr);
             var nah = document.getElementById("output2");
             nah.innerText = nr2;
 
-            // Aposta em Número
+            // Variável de controle para verificar se alguma condição foi satisfeita
+            let ganhou = false;
+
+            // Verifica número exato
             if (nr2 === bet1) {
                 var nah = document.getElementById("output3");
                 nah.innerText = "venceu";
-            } else if (bet2 === "Red") {
-                
-                    var nah = document.getElementById("output2");
-                    nah.innerText = "cuuuuuuu";
-                
+                ganhou = true;
+            }
 
+            // Verifica apostas de cores
+            if (bet2 && bet2.includes("Red")) {
+                const redNumbers = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
+                if (redNumbers.includes(nr2)) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                    console.log("Venceu: Apostou em vermelho");
+                }
+            }
+
+            if (bet2 && bet2.includes("Black")) {
+                const blackNumbers = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
+                if (blackNumbers.includes(nr2)) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            // Verifica se a aposta foi em números pares ou ímpares
+            if (bet2 && bet2.includes("Even")) {
+                if (nr2 % 2 === 0) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            if (bet2 && bet2.includes("Odd")) {
+                if (nr2 % 2 !== 0) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            // Verifica se a aposta está nos primeiros, segundos ou terceiros grupos de 12 números
+            if (bet2 && bet2.includes("1st 12")) {
+                const Numbers1st = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34];
+                if (Numbers1st.includes(nr2)) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            if (bet2 && bet2.includes("2nd 12")) {
+                const Numbers2nd = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35];
+                if (Numbers2nd.includes(nr2)) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            if (bet2 && bet2.includes("3rd 12")) {
+                const Numbers3rd = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36];
+                if (Numbers3rd.includes(nr2)) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            // Verifica se a aposta foi feita no intervalo de 1-18 ou 19-36
+            if (bet2 && bet2.includes("1-18")) {
+                if (nr2 >= 1 && nr2 <= 18) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            if (bet2 && bet2.includes("19-36")) {
+                if (nr2 >= 19 && nr2 <= 36) {
+                    var nah = document.getElementById("output3");
+                    nah.innerText = "venceu";
+                    ganhou = true;
+                }
+            }
+
+            // Se nenhuma das apostas for verdadeira, exibe que perdeu
+            if (!ganhou) {
+                var nah = document.getElementById("output3");
+                nah.innerText = "perdeu";
             }
         }
     </script>
+
+
 
 
 </body>
