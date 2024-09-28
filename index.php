@@ -206,6 +206,19 @@ session_start(); // Certifique-se de que está aqui, no início do arquivo
             transition: background-color 0.3s ease;
             width: 100%;
         }
+        section a {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-decoration: none;
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 18px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
 
         section button:hover {
             background-color: #ff4500;
@@ -266,6 +279,10 @@ session_start(); // Certifique-se de que está aqui, no início do arquivo
                     <p id="output2"></p>
                     <p id="output3"></p>
                     <button onclick="getNumberValue()">Apostar</button>
+                </section>
+                <section id="valor">
+                    <h2>Depositos</h2>
+                    <a href="deposito.php">Depositar</a>
                 </section>
             </div>
 
